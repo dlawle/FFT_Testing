@@ -1,0 +1,437 @@
+ARM GAS  /var/folders/hl/qgbwny5j0fd895c2c41bk3tw0000gp/T//ccsTNQ4S.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.eabi_attribute 28, 1
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 2
+  10              		.eabi_attribute 34, 1
+  11              		.eabi_attribute 18, 4
+  12              		.file	"arm_max_f32.c"
+  13              		.text
+  14              	.Ltext0:
+  15              		.cfi_sections	.debug_frame
+  16              		.section	.text.arm_max_f32,"ax",%progbits
+  17              		.align	1
+  18              		.p2align 2,,3
+  19              		.global	arm_max_f32
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv5-d16
+  26              	arm_max_f32:
+  27              	.LVL0:
+  28              	.LFB353:
+  29              		.file 1 "../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c"
+   1:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** /* ----------------------------------------------------------------------
+   2:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * Project:      CMSIS DSP Library
+   3:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * Title:        arm_max_f32.c
+   4:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * Description:  Maximum value of a floating-point vector
+   5:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  *
+   6:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * $Date:        27. January 2017
+   7:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * $Revision:    V.1.5.1
+   8:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  *
+   9:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * Target Processor: Cortex-M cores
+  10:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * -------------------------------------------------------------------- */
+  11:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** /*
+  12:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * Copyright (C) 2010-2017 ARM Limited or its affiliates. All rights reserved.
+  13:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  *
+  14:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * SPDX-License-Identifier: Apache-2.0
+  15:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  *
+  16:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * Licensed under the Apache License, Version 2.0 (the License); you may
+  17:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * not use this file except in compliance with the License.
+  18:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * You may obtain a copy of the License at
+  19:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  *
+  20:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * www.apache.org/licenses/LICENSE-2.0
+  21:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  *
+  22:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * Unless required by applicable law or agreed to in writing, software
+  23:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * distributed under the License is distributed on an AS IS BASIS, WITHOUT
+  24:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  25:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * See the License for the specific language governing permissions and
+  26:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * limitations under the License.
+  27:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  */
+  28:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+  29:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** #include "arm_math.h"
+ARM GAS  /var/folders/hl/qgbwny5j0fd895c2c41bk3tw0000gp/T//ccsTNQ4S.s 			page 2
+
+
+  30:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+  31:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** /**
+  32:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * @ingroup groupStats
+  33:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  */
+  34:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+  35:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** /**
+  36:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * @defgroup Max Maximum
+  37:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  *
+  38:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * Computes the maximum value of an array of data.
+  39:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * The function returns both the maximum value and its position within the array.
+  40:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * There are separate functions for floating-point, Q31, Q15, and Q7 data types.
+  41:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  */
+  42:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+  43:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** /**
+  44:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * @addtogroup Max
+  45:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * @{
+  46:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  */
+  47:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+  48:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+  49:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** /**
+  50:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * @brief Maximum value of a floating-point vector.
+  51:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * @param[in]       *pSrc points to the input vector
+  52:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * @param[in]       blockSize length of the input vector
+  53:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * @param[out]      *pResult maximum value returned here
+  54:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * @param[out]      *pIndex index of maximum value returned here
+  55:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  * @return none.
+  56:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****  */
+  57:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+  58:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** void arm_max_f32(
+  59:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   float32_t * pSrc,
+  60:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   uint32_t blockSize,
+  61:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   float32_t * pResult,
+  62:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   uint32_t * pIndex)
+  63:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** {
+  30              		.loc 1 63 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  64:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** #if defined (ARM_MATH_DSP)
+  65:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   /* Run the below code for Cortex-M4 and Cortex-M3 */
+  66:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+  67:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   float32_t maxVal1, maxVal2, out;               /* Temporary variables to store the output value. 
+  34              		.loc 1 67 3 view .LVU1
+  68:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   uint32_t blkCnt, outIndex, count;              /* loop counter */
+  35              		.loc 1 68 3 view .LVU2
+  69:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+  70:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   /* Initialise the count value. */
+  71:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   count = 0u;
+  36              		.loc 1 71 3 view .LVU3
+  72:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   /* Initialise the index value to zero. */
+  73:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   outIndex = 0u;
+  37              		.loc 1 73 3 view .LVU4
+  74:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   /* Load first input value that act as reference value for comparision */
+  75:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   out = *pSrc++;
+  38              		.loc 1 75 3 view .LVU5
+  63:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** #if defined (ARM_MATH_DSP)
+  39              		.loc 1 63 1 is_stmt 0 view .LVU6
+ARM GAS  /var/folders/hl/qgbwny5j0fd895c2c41bk3tw0000gp/T//ccsTNQ4S.s 			page 3
+
+
+  40 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  41              		.cfi_def_cfa_offset 20
+  42              		.cfi_offset 4, -20
+  43              		.cfi_offset 5, -16
+  44              		.cfi_offset 6, -12
+  45              		.cfi_offset 7, -8
+  46              		.cfi_offset 14, -4
+  76:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+  77:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   /* Loop unrolling */
+  78:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   blkCnt = (blockSize - 1u) >> 2u;
+  47              		.loc 1 78 23 view .LVU7
+  48 0002 01F1FF3E 		add	lr, r1, #-1
+  75:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+  49              		.loc 1 75 14 view .LVU8
+  50 0006 0546     		mov	r5, r0
+  51              	.LVL1:
+  79:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+  80:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   while (blkCnt > 0u)
+  52              		.loc 1 80 9 view .LVU9
+  53 0008 5FEA9E07 		lsrs	r7, lr, #2
+  75:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+  54              		.loc 1 75 7 view .LVU10
+  55 000c F5EC017A 		vldmia.32	r5!, {s15}
+  56              	.LVL2:
+  78:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+  57              		.loc 1 78 3 is_stmt 1 view .LVU11
+  58              		.loc 1 80 3 view .LVU12
+  59              		.loc 1 80 9 view .LVU13
+  60 0010 4CD0     		beq	.L14
+  61 0012 7E1C     		adds	r6, r7, #1
+  62 0014 1430     		adds	r0, r0, #20
+  63 0016 4FF0040C 		mov	ip, #4
+  73:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   /* Load first input value that act as reference value for comparision */
+  64              		.loc 1 73 12 is_stmt 0 view .LVU14
+  65 001a 0024     		movs	r4, #0
+  66 001c B600     		lsls	r6, r6, #2
+  67              	.LVL3:
+  68              	.L10:
+  81:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   {
+  82:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     /* Initialize maxVal to the next consecutive values one by one */
+  83:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     maxVal1 = *pSrc++;
+  69              		.loc 1 83 5 is_stmt 1 view .LVU15
+  84:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     maxVal2 = *pSrc++;
+  85:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+  86:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     /* compare for the maximum value */
+  87:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     if (out < maxVal1)
+  88:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     {
+  89:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****       /* Update the maximum value and its index */
+  90:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****       out = maxVal1;
+  70              		.loc 1 90 7 view .LVU16
+  91:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****       outIndex = count + 1u;
+  92:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     }
+  93:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+  94:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     /* compare for the maximum value */
+  95:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     if (out < maxVal2)
+  96:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     {
+  97:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****       /* Update the maximum value and its index */
+ARM GAS  /var/folders/hl/qgbwny5j0fd895c2c41bk3tw0000gp/T//ccsTNQ4S.s 			page 4
+
+
+  98:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****       out = maxVal2;
+  71              		.loc 1 98 7 view .LVU17
+  99:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****       outIndex = count + 2u;
+ 100:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     }
+ 101:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+ 102:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     /* Initialize maxVal to the next consecutive values one by one */
+ 103:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     maxVal1 = *pSrc++;
+ 104:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     maxVal2 = *pSrc++;
+ 105:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+ 106:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     /* compare for the maximum value */
+ 107:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     if (out < maxVal1)
+ 108:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     {
+ 109:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****       /* Update the maximum value and its index */
+ 110:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****       out = maxVal1;
+  72              		.loc 1 110 7 view .LVU18
+  83:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     maxVal2 = *pSrc++;
+  73              		.loc 1 83 13 is_stmt 0 view .LVU19
+  74 001e 50ED046A 		vldr.32	s13, [r0, #-16]
+  75              	.LVL4:
+  84:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+  76              		.loc 1 84 5 is_stmt 1 view .LVU20
+  91:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     }
+  77              		.loc 1 91 7 view .LVU21
+  84:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+  78              		.loc 1 84 13 is_stmt 0 view .LVU22
+  79 0022 10ED037A 		vldr.32	s14, [r0, #-12]
+  80              	.LVL5:
+  87:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     {
+  81              		.loc 1 87 5 is_stmt 1 view .LVU23
+  99:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     }
+  82              		.loc 1 99 7 view .LVU24
+  87:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     {
+  83              		.loc 1 87 8 is_stmt 0 view .LVU25
+  84 0026 F4EEE76A 		vcmpe.f32	s13, s15
+  85 002a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+  86 002e 03DD     		ble	.L3
+  90:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****       outIndex = count + 1u;
+  87              		.loc 1 90 11 view .LVU26
+  88 0030 F0EE667A 		vmov.f32	s15, s13
+  91:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     }
+  89              		.loc 1 91 16 view .LVU27
+  90 0034 ACF10304 		sub	r4, ip, #3
+  91              	.LVL6:
+  92              	.L3:
+  95:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     {
+  93              		.loc 1 95 5 is_stmt 1 view .LVU28
+  95:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     {
+  94              		.loc 1 95 8 is_stmt 0 view .LVU29
+  95 0038 F4EEC77A 		vcmpe.f32	s15, s14
+  96 003c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+  97 0040 03D5     		bpl	.L5
+  98:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****       outIndex = count + 2u;
+  98              		.loc 1 98 11 view .LVU30
+  99 0042 F0EE477A 		vmov.f32	s15, s14
+ 100              	.LVL7:
+  99:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     }
+ 101              		.loc 1 99 16 view .LVU31
+ARM GAS  /var/folders/hl/qgbwny5j0fd895c2c41bk3tw0000gp/T//ccsTNQ4S.s 			page 5
+
+
+ 102 0046 ACF10204 		sub	r4, ip, #2
+ 103              	.LVL8:
+ 104              	.L5:
+ 103:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     maxVal2 = *pSrc++;
+ 105              		.loc 1 103 5 is_stmt 1 view .LVU32
+ 103:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     maxVal2 = *pSrc++;
+ 106              		.loc 1 103 13 is_stmt 0 view .LVU33
+ 107 004a 50ED026A 		vldr.32	s13, [r0, #-8]
+ 108              	.LVL9:
+ 104:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+ 109              		.loc 1 104 5 is_stmt 1 view .LVU34
+ 111:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****       outIndex = count + 3u;
+ 110              		.loc 1 111 7 view .LVU35
+  80:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   {
+ 111              		.loc 1 80 9 is_stmt 0 view .LVU36
+ 112 004e 1030     		adds	r0, r0, #16
+ 113              	.LVL10:
+ 104:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+ 114              		.loc 1 104 13 view .LVU37
+ 115 0050 10ED057A 		vldr.32	s14, [r0, #-20]
+ 116              	.LVL11:
+ 107:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     {
+ 117              		.loc 1 107 5 is_stmt 1 view .LVU38
+ 107:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     {
+ 118              		.loc 1 107 8 is_stmt 0 view .LVU39
+ 119 0054 F4EEE67A 		vcmpe.f32	s15, s13
+ 120 0058 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 121 005c 03D5     		bpl	.L7
+ 110:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****       outIndex = count + 3u;
+ 122              		.loc 1 110 11 view .LVU40
+ 123 005e F0EE667A 		vmov.f32	s15, s13
+ 124              		.loc 1 111 16 view .LVU41
+ 125 0062 0CF1FF34 		add	r4, ip, #-1
+ 126              	.LVL12:
+ 127              	.L7:
+ 112:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     }
+ 113:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+ 114:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     /* compare for the maximum value */
+ 115:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     if (out < maxVal2)
+ 128              		.loc 1 115 5 is_stmt 1 view .LVU42
+ 129              		.loc 1 115 8 is_stmt 0 view .LVU43
+ 130 0066 F4EEC77A 		vcmpe.f32	s15, s14
+ 131 006a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 132 006e 02D5     		bpl	.L9
+ 116:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     {
+ 117:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****       /* Update the maximum value and its index */
+ 118:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****       out = maxVal2;
+ 133              		.loc 1 118 11 view .LVU44
+ 134 0070 F0EE477A 		vmov.f32	s15, s14
+ 135              	.LVL13:
+ 119:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****       outIndex = count + 4u;
+ 136              		.loc 1 119 16 view .LVU45
+ 137 0074 6446     		mov	r4, ip
+ 138              	.L9:
+ 139              	.LVL14:
+ 120:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     }
+ 121:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+ARM GAS  /var/folders/hl/qgbwny5j0fd895c2c41bk3tw0000gp/T//ccsTNQ4S.s 			page 6
+
+
+ 122:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     count += 4u;
+ 140              		.loc 1 122 5 is_stmt 1 view .LVU46
+ 123:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+ 124:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     /* Decrement the loop counter */
+ 125:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     blkCnt--;
+ 141              		.loc 1 125 5 view .LVU47
+  80:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   {
+ 142              		.loc 1 80 9 view .LVU48
+ 143 0076 0CF1040C 		add	ip, ip, #4
+ 144              	.LVL15:
+  80:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   {
+ 145              		.loc 1 80 9 is_stmt 0 view .LVU49
+ 146 007a B445     		cmp	ip, r6
+ 147 007c CFD1     		bne	.L10
+ 104:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+ 148              		.loc 1 104 20 view .LVU50
+ 149 007e 05EB0715 		add	r5, r5, r7, lsl #4
+ 150              	.LVL16:
+ 151              	.L2:
+ 126:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   }
+ 127:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+ 128:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   /* if (blockSize - 1u) is not multiple of 4 */
+ 129:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   blkCnt = (blockSize - 1u) % 4u;
+ 152              		.loc 1 129 3 is_stmt 1 view .LVU51
+ 130:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+ 131:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** #else
+ 132:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   /* Run the below code for Cortex-M0 */
+ 133:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+ 134:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   float32_t maxVal1, out;                        /* Temporary variables to store the output value. 
+ 135:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   uint32_t blkCnt, outIndex;                     /* loop counter */
+ 136:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+ 137:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   /* Initialise the index value to zero. */
+ 138:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   outIndex = 0u;
+ 139:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   /* Load first input value that act as reference value for comparision */
+ 140:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   out = *pSrc++;
+ 141:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+ 142:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   blkCnt = (blockSize - 1u);
+ 143:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+ 144:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** #endif /* #if defined (ARM_MATH_DSP) */
+ 145:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+ 146:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   while (blkCnt > 0u)
+ 153              		.loc 1 146 3 view .LVU52
+ 154              		.loc 1 146 9 view .LVU53
+ 155 0082 1EF00300 		ands	r0, lr, #3
+ 156              	.LVL17:
+ 157              		.loc 1 146 9 is_stmt 0 view .LVU54
+ 158 0086 0DD0     		beq	.L11
+ 159              		.loc 1 146 9 view .LVU55
+ 160 0088 081A     		subs	r0, r1, r0
+ 161              	.LVL18:
+ 162              	.L13:
+ 147:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   {
+ 148:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     /* Initialize maxVal to the next consecutive values one by one */
+ 149:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     maxVal1 = *pSrc++;
+ 163              		.loc 1 149 5 is_stmt 1 view .LVU56
+ 164              		.loc 1 149 13 is_stmt 0 view .LVU57
+ 165 008a B5EC017A 		vldmia.32	r5!, {s14}
+ARM GAS  /var/folders/hl/qgbwny5j0fd895c2c41bk3tw0000gp/T//ccsTNQ4S.s 			page 7
+
+
+ 166              	.LVL19:
+ 150:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+ 151:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     /* compare for the maximum value */
+ 152:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     if (out < maxVal1)
+ 167              		.loc 1 152 5 is_stmt 1 view .LVU58
+ 168              		.loc 1 152 8 is_stmt 0 view .LVU59
+ 169 008e B4EEE77A 		vcmpe.f32	s14, s15
+ 170 0092 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 171 0096 02DD     		ble	.L12
+ 153:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     {
+ 154:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****       /* Update the maximum value and it's index */
+ 155:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****       out = maxVal1;
+ 172              		.loc 1 155 11 view .LVU60
+ 173 0098 F0EE477A 		vmov.f32	s15, s14
+ 174              	.LVL20:
+ 156:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****       outIndex = blockSize - blkCnt;
+ 175              		.loc 1 156 16 view .LVU61
+ 176 009c 0446     		mov	r4, r0
+ 177              	.L12:
+ 178              	.LVL21:
+ 157:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     }
+ 158:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+ 159:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     /* Decrement the loop counter */
+ 160:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****     blkCnt--;
+ 179              		.loc 1 160 5 is_stmt 1 view .LVU62
+ 146:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   {
+ 180              		.loc 1 146 9 view .LVU63
+ 181 009e 0130     		adds	r0, r0, #1
+ 182              	.LVL22:
+ 146:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   {
+ 183              		.loc 1 146 9 is_stmt 0 view .LVU64
+ 184 00a0 8842     		cmp	r0, r1
+ 185 00a2 F2D1     		bne	.L13
+ 186              	.LVL23:
+ 187              	.L11:
+ 161:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   }
+ 162:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** 
+ 163:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   /* Store the maximum value and it's index into destination pointers */
+ 164:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   *pResult = out;
+ 188              		.loc 1 164 3 is_stmt 1 view .LVU65
+ 189              		.loc 1 164 12 is_stmt 0 view .LVU66
+ 190 00a4 C2ED007A 		vstr.32	s15, [r2]
+ 165:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   *pIndex = outIndex;
+ 191              		.loc 1 165 3 is_stmt 1 view .LVU67
+ 192              		.loc 1 165 11 is_stmt 0 view .LVU68
+ 193 00a8 1C60     		str	r4, [r3]
+ 166:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c **** }
+ 194              		.loc 1 166 1 view .LVU69
+ 195 00aa F0BD     		pop	{r4, r5, r6, r7, pc}
+ 196              	.LVL24:
+ 197              	.L14:
+  73:../../libDaisy//Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_max_f32.c ****   /* Load first input value that act as reference value for comparision */
+ 198              		.loc 1 73 12 view .LVU70
+ 199 00ac 3C46     		mov	r4, r7
+ 200 00ae E8E7     		b	.L2
+ 201              		.cfi_endproc
+ 202              	.LFE353:
+ARM GAS  /var/folders/hl/qgbwny5j0fd895c2c41bk3tw0000gp/T//ccsTNQ4S.s 			page 8
+
+
+ 204              		.text
+ 205              	.Letext0:
+ 206              		.file 2 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/arm-none-eabi/include/machine/_de
+ 207              		.file 3 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/arm-none-eabi/include/sys/_stdint
+ 208              		.file 4 "../../libDaisy//Drivers/CMSIS/DSP/Include/arm_math.h"
+ARM GAS  /var/folders/hl/qgbwny5j0fd895c2c41bk3tw0000gp/T//ccsTNQ4S.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 arm_max_f32.c
+/var/folders/hl/qgbwny5j0fd895c2c41bk3tw0000gp/T//ccsTNQ4S.s:17     .text.arm_max_f32:0000000000000000 $t
+/var/folders/hl/qgbwny5j0fd895c2c41bk3tw0000gp/T//ccsTNQ4S.s:26     .text.arm_max_f32:0000000000000000 arm_max_f32
+
+NO UNDEFINED SYMBOLS

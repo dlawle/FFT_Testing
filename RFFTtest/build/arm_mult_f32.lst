@@ -1,0 +1,390 @@
+ARM GAS  /var/folders/hl/qgbwny5j0fd895c2c41bk3tw0000gp/T//ccmWyrPn.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.eabi_attribute 28, 1
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 2
+  10              		.eabi_attribute 34, 1
+  11              		.eabi_attribute 18, 4
+  12              		.file	"arm_mult_f32.c"
+  13              		.text
+  14              	.Ltext0:
+  15              		.cfi_sections	.debug_frame
+  16              		.section	.text.arm_mult_f32,"ax",%progbits
+  17              		.align	1
+  18              		.p2align 2,,3
+  19              		.global	arm_mult_f32
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv5-d16
+  26              	arm_mult_f32:
+  27              	.LVL0:
+  28              	.LFB353:
+  29              		.file 1 "../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c"
+   1:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** /* ----------------------------------------------------------------------
+   2:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * Project:      CMSIS DSP Library
+   3:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * Title:        arm_mult_f32.c
+   4:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * Description:  Floating-point vector multiplication
+   5:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  *
+   6:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * $Date:        27. January 2017
+   7:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * $Revision:    V.1.5.1
+   8:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  *
+   9:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * Target Processor: Cortex-M cores
+  10:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * -------------------------------------------------------------------- */
+  11:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** /*
+  12:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * Copyright (C) 2010-2017 ARM Limited or its affiliates. All rights reserved.
+  13:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  *
+  14:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * SPDX-License-Identifier: Apache-2.0
+  15:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  *
+  16:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * Licensed under the Apache License, Version 2.0 (the License); you may
+  17:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * not use this file except in compliance with the License.
+  18:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * You may obtain a copy of the License at
+  19:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  *
+  20:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * www.apache.org/licenses/LICENSE-2.0
+  21:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  *
+  22:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * Unless required by applicable law or agreed to in writing, software
+  23:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * distributed under the License is distributed on an AS IS BASIS, WITHOUT
+  24:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  25:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * See the License for the specific language governing permissions and
+  26:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * limitations under the License.
+  27:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  */
+  28:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+  29:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** #include "arm_math.h"
+ARM GAS  /var/folders/hl/qgbwny5j0fd895c2c41bk3tw0000gp/T//ccmWyrPn.s 			page 2
+
+
+  30:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+  31:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** /**
+  32:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * @ingroup groupMath
+  33:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  */
+  34:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+  35:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** /**
+  36:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * @defgroup BasicMult Vector Multiplication
+  37:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  *
+  38:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * Element-by-element multiplication of two vectors.
+  39:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  *
+  40:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * <pre>
+  41:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  *     pDst[n] = pSrcA[n] * pSrcB[n],   0 <= n < blockSize.
+  42:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * </pre>
+  43:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  *
+  44:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * There are separate functions for floating-point, Q7, Q15, and Q31 data types.
+  45:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  */
+  46:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+  47:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** /**
+  48:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * @addtogroup BasicMult
+  49:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * @{
+  50:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  */
+  51:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+  52:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** /**
+  53:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * @brief Floating-point vector multiplication.
+  54:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * @param[in]       *pSrcA points to the first input vector
+  55:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * @param[in]       *pSrcB points to the second input vector
+  56:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * @param[out]      *pDst points to the output vector
+  57:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * @param[in]       blockSize number of samples in each vector
+  58:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  * @return none.
+  59:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****  */
+  60:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+  61:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** void arm_mult_f32(
+  62:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   float32_t * pSrcA,
+  63:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   float32_t * pSrcB,
+  64:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   float32_t * pDst,
+  65:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   uint32_t blockSize)
+  66:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** {
+  30              		.loc 1 66 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  67:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   uint32_t blkCnt;                               /* loop counters */
+  34              		.loc 1 67 3 view .LVU1
+  68:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** #if defined (ARM_MATH_DSP)
+  69:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+  70:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   /* Run the below code for Cortex-M4 and Cortex-M3 */
+  71:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   float32_t inA1, inA2, inA3, inA4;              /* temporary input variables */
+  35              		.loc 1 71 3 view .LVU2
+  72:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   float32_t inB1, inB2, inB3, inB4;              /* temporary input variables */
+  36              		.loc 1 72 3 view .LVU3
+  73:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   float32_t out1, out2, out3, out4;              /* temporary output variables */
+  37              		.loc 1 73 3 view .LVU4
+  74:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+  75:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   /* loop Unrolling */
+  76:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   blkCnt = blockSize >> 2u;
+  38              		.loc 1 76 3 view .LVU5
+  77:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ARM GAS  /var/folders/hl/qgbwny5j0fd895c2c41bk3tw0000gp/T//ccmWyrPn.s 			page 3
+
+
+  78:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   /* First part of the processing with loop unrolling.  Compute 4 outputs at a time.
+  79:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****    ** a second loop below computes the remaining 1 to 3 samples. */
+  80:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   while (blkCnt > 0u)
+  39              		.loc 1 80 3 view .LVU6
+  40              		.loc 1 80 9 view .LVU7
+  66:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   uint32_t blkCnt;                               /* loop counters */
+  41              		.loc 1 66 1 is_stmt 0 view .LVU8
+  42 0000 70B5     		push	{r4, r5, r6, lr}
+  43              		.cfi_def_cfa_offset 16
+  44              		.cfi_offset 4, -16
+  45              		.cfi_offset 5, -12
+  46              		.cfi_offset 6, -8
+  47              		.cfi_offset 14, -4
+  48              		.loc 1 80 9 view .LVU9
+  49 0002 9E08     		lsrs	r6, r3, #2
+  50              	.LVL1:
+  51              		.loc 1 80 9 view .LVU10
+  52 0004 34D0     		beq	.L2
+  53 0006 00F11004 		add	r4, r0, #16
+  54 000a 01F1100E 		add	lr, r1, #16
+  55 000e 02F1100C 		add	ip, r2, #16
+  56 0012 3546     		mov	r5, r6
+  57              	.LVL2:
+  58              	.L3:
+  81:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   {
+  82:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     /* C = A * B */
+  83:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     /* Multiply the inputs and store the results in output buffer */
+  84:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     /* read sample from sourceA */
+  85:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     inA1 = *pSrcA;
+  59              		.loc 1 85 5 is_stmt 1 view .LVU11
+  86:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     /* read sample from sourceB */
+  87:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     inB1 = *pSrcB;
+  60              		.loc 1 87 5 view .LVU12
+  88:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     /* read sample from sourceA */
+  89:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     inA2 = *(pSrcA + 1);
+  61              		.loc 1 89 5 view .LVU13
+  90:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     /* read sample from sourceB */
+  91:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     inB2 = *(pSrcB + 1);
+  62              		.loc 1 91 5 view .LVU14
+  92:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+  93:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     /* out = sourceA * sourceB */
+  94:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     out1 = inA1 * inB1;
+  63              		.loc 1 94 5 view .LVU15
+  95:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+  96:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     /* read sample from sourceA */
+  97:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     inA3 = *(pSrcA + 2);
+  64              		.loc 1 97 5 view .LVU16
+  94:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+  65              		.loc 1 94 10 is_stmt 0 view .LVU17
+  66 0014 5EED047A 		vldr.32	s15, [lr, #-16]
+  80:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   {
+  67              		.loc 1 80 9 view .LVU18
+  68 0018 0CF1100C 		add	ip, ip, #16
+  94:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+  69              		.loc 1 94 10 view .LVU19
+  70 001c 14ED046A 		vldr.32	s12, [r4, #-16]
+  80:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   {
+ARM GAS  /var/folders/hl/qgbwny5j0fd895c2c41bk3tw0000gp/T//ccmWyrPn.s 			page 4
+
+
+  71              		.loc 1 80 9 view .LVU20
+  72 0020 013D     		subs	r5, r5, #1
+  73              	.LVL3:
+  74              		.loc 1 97 10 view .LVU21
+  75 0022 54ED026A 		vldr.32	s13, [r4, #-8]
+  76              	.LVL4:
+  98:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     /* read sample from sourceB */
+  99:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     inB3 = *(pSrcB + 2);
+  77              		.loc 1 99 5 is_stmt 1 view .LVU22
+  80:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   {
+  78              		.loc 1 80 9 is_stmt 0 view .LVU23
+  79 0026 0EF1100E 		add	lr, lr, #16
+  80              	.LVL5:
+  94:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+  81              		.loc 1 94 10 view .LVU24
+  82 002a 26EE276A 		vmul.f32	s12, s12, s15
+  83              	.LVL6:
+  84              		.loc 1 99 10 view .LVU25
+  85 002e 1EED065A 		vldr.32	s10, [lr, #-24]
+  86              	.LVL7:
+ 100:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ 101:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     /* out = sourceA * sourceB */
+ 102:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     out2 = inA2 * inB2;
+  87              		.loc 1 102 5 is_stmt 1 view .LVU26
+  88              		.loc 1 102 10 is_stmt 0 view .LVU27
+  89 0032 14ED037A 		vldr.32	s14, [r4, #-12]
+  80:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   {
+  90              		.loc 1 80 9 view .LVU28
+  91 0036 04F11004 		add	r4, r4, #16
+  92              	.LVL8:
+  93              		.loc 1 102 10 view .LVU29
+  94 003a 5EED075A 		vldr.32	s11, [lr, #-28]
+ 103:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ 104:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     /* read sample from sourceA */
+ 105:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     inA4 = *(pSrcA + 3);
+ 106:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ 107:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     /* store result to destination buffer */
+ 108:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     *pDst = out1;
+ 109:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ 110:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     /* read sample from sourceB */
+ 111:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     inB4 = *(pSrcB + 3);
+ 112:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ 113:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     /* out = sourceA * sourceB */
+ 114:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     out3 = inA3 * inB3;
+  95              		.loc 1 114 10 view .LVU30
+  96 003e 66EE856A 		vmul.f32	s13, s13, s10
+  97              	.LVL9:
+ 105:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+  98              		.loc 1 105 10 view .LVU31
+  99 0042 54ED057A 		vldr.32	s15, [r4, #-20]
+ 100              	.LVL10:
+ 108:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ 101              		.loc 1 108 11 view .LVU32
+ 102 0046 0CED086A 		vstr.32	s12, [ip, #-32]
+ 103              	.LVL11:
+ 102:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ 104              		.loc 1 102 10 view .LVU33
+ARM GAS  /var/folders/hl/qgbwny5j0fd895c2c41bk3tw0000gp/T//ccmWyrPn.s 			page 5
+
+
+ 105 004a 27EE257A 		vmul.f32	s14, s14, s11
+ 106              	.LVL12:
+ 105:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ 107              		.loc 1 105 5 is_stmt 1 view .LVU34
+ 108:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ 108              		.loc 1 108 5 view .LVU35
+ 111:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ 109              		.loc 1 111 5 view .LVU36
+ 111:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ 110              		.loc 1 111 10 is_stmt 0 view .LVU37
+ 111 004e 1EED056A 		vldr.32	s12, [lr, #-20]
+ 112              	.LVL13:
+ 113              		.loc 1 114 5 is_stmt 1 view .LVU38
+ 115:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ 116:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     /* store result to destination buffer */
+ 117:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     *(pDst + 1) = out2;
+ 114              		.loc 1 117 5 view .LVU39
+ 118:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ 119:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     /* out = sourceA * sourceB */
+ 120:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     out4 = inA4 * inB4;
+ 121:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     /* store result to destination buffer */
+ 122:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     *(pDst + 2) = out3;
+ 115              		.loc 1 122 17 is_stmt 0 view .LVU40
+ 116 0052 4CED066A 		vstr.32	s13, [ip, #-24]
+ 120:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     /* store result to destination buffer */
+ 117              		.loc 1 120 10 view .LVU41
+ 118 0056 67EE867A 		vmul.f32	s15, s15, s12
+ 119              	.LVL14:
+ 117:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ 120              		.loc 1 117 17 view .LVU42
+ 121 005a 0CED077A 		vstr.32	s14, [ip, #-28]
+ 120:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     /* store result to destination buffer */
+ 122              		.loc 1 120 5 is_stmt 1 view .LVU43
+ 123              	.LVL15:
+ 124              		.loc 1 122 5 view .LVU44
+ 123:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     /* store result to destination buffer */
+ 124:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     *(pDst + 3) = out4;
+ 125              		.loc 1 124 5 view .LVU45
+ 126              		.loc 1 124 17 is_stmt 0 view .LVU46
+ 127 005e 4CED057A 		vstr.32	s15, [ip, #-20]
+ 125:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ 126:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ 127:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     /* update pointers to process next samples */
+ 128:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     pSrcA += 4u;
+ 128              		.loc 1 128 5 is_stmt 1 view .LVU47
+ 129              	.LVL16:
+ 129:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     pSrcB += 4u;
+ 130              		.loc 1 129 5 view .LVU48
+ 130:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     pDst += 4u;
+ 131              		.loc 1 130 5 view .LVU49
+ 131:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ 132:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     /* Decrement the blockSize loop counter */
+ 133:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     blkCnt--;
+ 132              		.loc 1 133 5 view .LVU50
+  80:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   {
+ 133              		.loc 1 80 9 view .LVU51
+ 134 0062 D7D1     		bne	.L3
+ARM GAS  /var/folders/hl/qgbwny5j0fd895c2c41bk3tw0000gp/T//ccmWyrPn.s 			page 6
+
+
+ 128:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     pSrcB += 4u;
+ 135              		.loc 1 128 11 is_stmt 0 view .LVU52
+ 136 0064 00EB0610 		add	r0, r0, r6, lsl #4
+ 129:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     pDst += 4u;
+ 137              		.loc 1 129 11 view .LVU53
+ 138 0068 01EB0611 		add	r1, r1, r6, lsl #4
+ 130:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ 139              		.loc 1 130 10 view .LVU54
+ 140 006c 02EB0612 		add	r2, r2, r6, lsl #4
+ 141              	.LVL17:
+ 142              	.L2:
+ 134:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   }
+ 135:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ 136:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   /* If the blockSize is not a multiple of 4, compute any remaining output samples here.
+ 137:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****    ** No loop unrolling is used. */
+ 138:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   blkCnt = blockSize % 0x4u;
+ 143              		.loc 1 138 3 is_stmt 1 view .LVU55
+ 139:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ 140:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** #else
+ 141:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ 142:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   /* Run the below code for Cortex-M0 */
+ 143:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ 144:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   /* Initialize blkCnt with number of samples */
+ 145:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   blkCnt = blockSize;
+ 146:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ 147:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** #endif /* #if defined (ARM_MATH_DSP) */
+ 148:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ 149:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   while (blkCnt > 0u)
+ 144              		.loc 1 149 3 view .LVU56
+ 145              		.loc 1 149 9 view .LVU57
+ 146 0070 13F00303 		ands	r3, r3, #3
+ 147              	.LVL18:
+ 148              		.loc 1 149 9 is_stmt 0 view .LVU58
+ 149 0074 0BD0     		beq	.L1
+ 150 0076 00EB8303 		add	r3, r0, r3, lsl #2
+ 151              	.LVL19:
+ 152              	.L5:
+ 150:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   {
+ 151:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     /* C = A * B */
+ 152:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     /* Multiply the inputs and store the results in output buffer */
+ 153:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     *pDst++ = (*pSrcA++) * (*pSrcB++);
+ 153              		.loc 1 153 5 is_stmt 1 view .LVU59
+ 154              		.loc 1 153 26 is_stmt 0 view .LVU60
+ 155 007a F0EC017A 		vldmia.32	r0!, {s15}
+ 156              	.LVL20:
+ 157              		.loc 1 153 26 view .LVU61
+ 158 007e B1EC017A 		vldmia.32	r1!, {s14}
+ 159              	.LVL21:
+ 149:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   {
+ 160              		.loc 1 149 9 view .LVU62
+ 161 0082 9842     		cmp	r0, r3
+ 162              		.loc 1 153 26 view .LVU63
+ 163 0084 67EE877A 		vmul.f32	s15, s15, s14
+ 164              		.loc 1 153 13 view .LVU64
+ 165 0088 E2EC017A 		vstmia.32	r2!, {s15}
+ 166              	.LVL22:
+ 154:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** 
+ARM GAS  /var/folders/hl/qgbwny5j0fd895c2c41bk3tw0000gp/T//ccmWyrPn.s 			page 7
+
+
+ 155:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     /* Decrement the blockSize loop counter */
+ 156:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****     blkCnt--;
+ 167              		.loc 1 156 5 is_stmt 1 view .LVU65
+ 149:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   {
+ 168              		.loc 1 149 9 view .LVU66
+ 169 008c F5D1     		bne	.L5
+ 170              	.L1:
+ 157:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c ****   }
+ 158:../../libDaisy//Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_mult_f32.c **** }
+ 171              		.loc 1 158 1 is_stmt 0 view .LVU67
+ 172 008e 70BD     		pop	{r4, r5, r6, pc}
+ 173              		.cfi_endproc
+ 174              	.LFE353:
+ 176              		.text
+ 177              	.Letext0:
+ 178              		.file 2 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/arm-none-eabi/include/machine/_de
+ 179              		.file 3 "/opt/homebrew/Cellar/arm-none-eabi-gcc/10.3-2021.07/gcc/arm-none-eabi/include/sys/_stdint
+ 180              		.file 4 "../../libDaisy//Drivers/CMSIS/DSP/Include/arm_math.h"
+ARM GAS  /var/folders/hl/qgbwny5j0fd895c2c41bk3tw0000gp/T//ccmWyrPn.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 arm_mult_f32.c
+/var/folders/hl/qgbwny5j0fd895c2c41bk3tw0000gp/T//ccmWyrPn.s:17     .text.arm_mult_f32:0000000000000000 $t
+/var/folders/hl/qgbwny5j0fd895c2c41bk3tw0000gp/T//ccmWyrPn.s:26     .text.arm_mult_f32:0000000000000000 arm_mult_f32
+
+NO UNDEFINED SYMBOLS
