@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.fft import fft, ifft
-from scipy.signal import hann
+from scipy.signal.windows import hann
 from scipy.io import wavfile
 
 # Parameters
@@ -45,8 +45,32 @@ fft_result = fft(sine_wave)
 
     Example: Scale the magnitude of all bins by a factor of 0.5
     fft_result = fft_result * 0.5
-"""
 
+// Function to perform phase manipulation on the inputBuffer
+void phaseManipulation(float* inputBuffer, int bufferSize, float phase_shift) 
+{
+    for (int i = 0; i < bufferSize; ++i) 
+	{
+        float realPart = inputBuffer[2 * i];
+        float imagPart = inputBuffer[2 * i + 1];
+        
+        // Calculate the magnitude and phase
+        float magnitude = std::sqrt(realPart * realPart + imagPart * imagPart);
+        float angle = std::atan2(imagPart, realPart);
+        
+        // Apply the phase shift
+        angle += phase_shift;
+
+        // Update the real and imaginary parts
+        inputBuffer[2 * i] = magnitude * std::cos(angle);
+        inputBuffer[2 * i + 1] = magnitude * std::sin(angle);
+    }
+}
+"""
+def phase_shift(input, shift_amount):
+    return input * np.exp(1j * shift_amount)
+
+fft_result = phase_shift(fft_result, 5)
 
 # Perform IFFT
 ifft_result = ifft(fft_result)
@@ -58,7 +82,8 @@ plt.title("Original 440Hz Sine Wave with Hanning Window")
 
 # Plot the manipulated IFFT result
 plt.subplot(2, 1, 2)
-plt.plot(t, ifft_result)
+plt.plot(t, ifft_result.real)
+plt.plot(t, ifft_result.imag)
 plt.title("Manipulated Reconstructed Wave (IFFT)")
 
 plt.tight_layout()
